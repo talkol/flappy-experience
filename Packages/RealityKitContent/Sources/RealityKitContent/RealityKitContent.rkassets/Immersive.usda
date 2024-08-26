@@ -1,0 +1,2941 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Terrain", "Cloud_1", "Cloud_2", "Cloud_3", "Cloud_4", "Cloud_5", "Cloud_6", "Cloud_7", "Cloud_8", "Cloud_9", "skyscraperE_1", "skyscraperE_2", "skyscraperE_3", "skyscraperE_4", "skyscraperE_6", "skyscraperE_7", "skyscraperE_9", "skyscraperE_10", "skyscraperE_11", "skyscraperE_12", "skyscraperE_13", "skyscraperE_14", "small_buildingD_1", "small_buildingD_2", "small_buildingD_3", "small_buildingD_4", "small_buildingD_5", "small_buildingD_6", "small_buildingD_7", "small_buildingD_8", "small_buildingD_9", "small_buildingD_10", "small_buildingD_11", "small_buildingD_12", "small_buildingD_13", "tree_small_1", "tree_small_2", "tree_small_3", "tree_small_4", "tree_small_5", "tree_small_6", "tree_small_7", "tree_small_8", "tree_small_9", "tree_small_10", "tree_small_11", "tree_small_12", "tree_small_13", "tree_small_14", "tree_small_15", "tree_small_16", "tree_small_17", "tree_small_18", "tree_small_19", "tree_small_20", "tree_small_21", "tree_small_22", "tree_small_23", "tree_small_24", "tree_small_25", "tree_small_26", "tree_small_27", "tree_small_28", "tree_small_29", "tree_small_30", "tree_small_31", "tree_small_32", "tree_small_33", "tree_small_34", "tree_small_35", "tree_small_36", "tree_small_37", "tree_small_38", "tree_small_39", "tree_small_40", "tree_small_41", "tree_small_42", "tree_small_43", "tree_small_44", "tree_small_45", "tree_small_46", "Pipe_0_bot", "Pipe_0_top", "Pipe_1_bot", "Pipe_1_top", "Pipe_2_bot", "Pipe_2_top", "Pipe_3_bot", "Pipe_3_top", "Pipe_4_bot", "Pipe_4_top", "Pipe_5_bot", "Pipe_5_top", "PipeMaterial", "TerrainMaterial"]
+    def Material "TerrainMaterial"
+    {
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-566.9336, 82.14844)
+                    float2 sizeInSubgraph = (203.5, 53)
+                    int stackingOrderInSubgraph = 11
+                }
+            }
+        )
+        prepend token outputs:mtlx:surface.connect = </Root/TerrainMaterial/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/TerrainMaterial/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (218, 89.82422)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 18
+
+        def Shader "UsdPreviewSurface" (
+            active = false
+        )
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.0013896626, 0.73479784, 0) (
+                colorSpace = "srgb_displayp3"
+            )
+            color3f inputs:diffuseColor.connect = </Root/TerrainMaterial/diffuseColor.outputs:rgb>
+            normal3f inputs:normal = (0, 0, 1)
+            token outputs:surface
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @textures/1601.m10.i311.n029.S.c10.164511620 Seamless green grass vector pattern.jpg@
+            float2 inputs:st.connect = </Root/TerrainMaterial/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/TerrainMaterial/UsdPreviewSurface.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoat = 0
+            color3f inputs:diffuseColor.connect = </Root/TerrainMaterial/TiledImage.outputs:out>
+            float inputs:ior = 1.5
+            float inputs:metallic = 0.1
+            float3 inputs:normal = (0, 0, 1)
+            float inputs:occlusion = 1
+            float inputs:roughness = 0.7
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (-94.16016, 139.85156)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 30
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:diffuseColor", "inputs:roughness"]
+        }
+
+        def Shader "TiledImage"
+        {
+            uniform token info:id = "ND_tiledimage_color3"
+            color3f inputs:default
+            asset inputs:file = @textures/1601.m10.i311.n029.S.c10.164511620 Seamless green grass vector pattern.jpg@
+            string inputs:filtertype = "linear"
+            float2 inputs:texcoord
+            float2 inputs:uvoffset = (0, 0)
+            float2 inputs:uvtiling = (100, 100)
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-340.29688, 121.12891)
+            float2 ui:nodegraph:node:size = (158.5, 235)
+            int ui:nodegraph:node:stackingOrder = 29
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file", "inputs:uvtiling", "inputs:default", "inputs:filtertype", "inputs:texcoord"]
+        }
+    }
+
+    def "Terrain" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 1.5707963, 0)
+        }
+        references = @Terrain.usdc@
+    )
+    {
+        rel material:binding = </Root/TerrainMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "tree_small_1" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0.17095177)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.99634916, 0, 0, 0.085371844)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.563, 19.97, 2.9429793e-7)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            over "tree_small"
+            {
+                over "primitive_1"
+                {
+                }
+            }
+        }
+    }
+
+    def "tree_small_2" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.01745329, 0, 0)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9999619, -0.008726534, 0, 0)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (1.389782, 19.841402, -1.4877841)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_2/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_2/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_3" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.052359875, 0, 0)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.99965733, -0.026176948, 0, 0)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-1.580091, 19.709114, -2.835063)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_3/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_3/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_4" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.13962638, -0.19198631, 0.12217306)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9915275, -0.06346884, -0.0996729, 0.053946067)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-2.9652846, 18.35904, -7.2092266)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_4/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_4/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_5" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.20943953, -0.1919862, -0.31415924)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.97618824, -0.117677696, -0.07787057, -0.16475652)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (4.5991373, 17.906096, -7.3362384)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_5/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_5/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_6" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.4796299, -0.2789658, -0.19472796)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.95418185, -0.2472305, -0.111547224, -0.12637782)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (1.35145, 16.907175, -10.398043)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_6/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_6/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_7" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.6108652, -0.52359885, 0)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9212198, -0.29045948, -0.2468401, -0.077828385)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (2.105145, 15.949781, -11.724407)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_7/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_7/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_8" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.69813174, 0.17453295, -1.1348276e-8)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9361168, -0.34071866, 0.08189962, 0.029809019)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-0.864728, 14.657185, -13.629922)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_8/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_8/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_9" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.8726648, 0.17453296, 0.12217309)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.8989263, -0.4250471, 0.05314054, 0.09188316)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-2.17498, 12.102205, -15.965888)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_9/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_9/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_10" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.8726646, -0.19198619, -0.31415918)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.884692, -0.4290822, -0.019988602, -0.18113248)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (2.3004286, 9.313159, -17.673164)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_10/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_10/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_1" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0.3490658, 0.2268928)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.97847724, -0.019657528, 0.17253192, 0.111483395)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (-3.5730398, 19.455397, -0.5839001)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "skyscraperE_2" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.17453301, -0.6981317, -0.17453301)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.92995656, -0.111283585, -0.33228406, -0.111283585)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (3.9167185, 19.482378, -3.23624)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_2/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_2/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_2/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_2/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_2/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_2/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_3" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.61086524, 0.4188791, 0.17453302)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.93477505, 0.27573335, 0.22316991, 0.019023195)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (1.4629039, 16.675636, 10.716041)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_3/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_3/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_3/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_3/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_3/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_3/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_4" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.6981317, 0.17453296, 0.17453301)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.92995656, -0.34656012, 0.051892374, 0.11128358)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (-3.9734287, 16.479422, -10.365236)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_4/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_4/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_4/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_4/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_4/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_4/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_6" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.1344635, 0.34906587, -0.3490658)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.83416176, -0.49566647, 0.23611204, -0.052344833)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (-2.3118017, 6.82314, -18.602615)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_6/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_6/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_6/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_6/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_6/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_6/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_7" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.4835298, -0.27925277, 0.08726635)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.7335086, -0.6639029, -0.13169356, -0.062087953)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (5.027302, 4.3237624, -18.632626)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_7/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_7/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_7/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_7/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_7/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_7/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_9" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.6108653, -0.34906584, -3.0543263)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.011198826, 0.1783709, -0.2886317, 0.9406116)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (-4.1347666, -16.968622, -9.619522)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_9/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_9/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_9/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_9/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_9/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_9/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_10" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.08726645, -0.9599307, -3.0543263)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.058776014, 0.45918223, 0.058776036, 0.8844447)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (4.4256186, -19.40146, -1.2941848)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_10/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_10/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_10/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_10/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_10/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_10/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_11" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.87266463, 0.17453295, -2.9670596)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.11538286, -0.041995887, -0.42629242, 0.8962131)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (3.9088016, -12.945416, -14.588312)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_11/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_11/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_11/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_11/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_11/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_11/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_1" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.34906584, 0.052359883, 0.08726646)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.983335, -0.17454793, 0.018182898, 0.04748324)
+        float3 xformOp:scale = (1.1, 1.1, 1.1)
+        float3 xformOp:translate = (-1.483, 18.275196, -8.406)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "small_buildingD_2" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.8726645, -0.52359885, -0.17453302)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.8625616, -0.42710856, -0.19809859, -0.18526387)
+        float3 xformOp:scale = (1.1, 1.1, 1.1)
+        float3 xformOp:translate = (7.4115562, 11.967131, -13.497574)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_2/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_2/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_2/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_2/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_2/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_3" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.5707964, -0.1745329, 0.08726642)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        reorder nameChildren = ["Materials", "Geom"]
+        quatf xformOp:orient = (0.7064338, -0.7010574, -0.09229594, -0.030843567)
+        float3 xformOp:scale = (1.1, 1.1, 1.1)
+        float3 xformOp:translate = (4.27, 0.207, -19.24165)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_3/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_3/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_3/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_3/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_3/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_4" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.012785, -0.08300142, -0.16279002)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.5298321, -0.8431897, 0.046516817, -0.07839183)
+        float3 xformOp:scale = (1.1, 1.1, 1.1)
+        float3 xformOp:translate = (-2.4147391, -7.494881, -18.195152)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_4/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_4/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_4/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_4/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_4/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_4/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+
+        over "Geom"
+        {
+            over "small_buildingD"
+            {
+                over "primitive_0"
+                {
+                }
+
+                over "primitive_1"
+                {
+                }
+
+                over "primitive_2"
+                {
+                }
+
+                over "primitive_3"
+                {
+                }
+
+                over "primitive_4"
+                {
+                }
+            }
+        }
+    }
+
+    def "small_buildingD_5" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.7008464, -0.1557002, -5.686505)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.2306115, 0.9248881, 0.30220607, 0.008480754)
+        float3 xformOp:scale = (1.1, 1.1, 0.8)
+        float3 xformOp:translate = (6.2513266, -16.041395, -9.479515)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_5/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_5/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_5/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_5/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_5/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_5/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_6" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (2.3841858e-7, 3.0526054, 2.9636981)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.0039512254, 0.99506104, -0.08874208, -0.044302996)
+        float3 xformOp:scale = (1.0999999, 1.1, 1.1000001)
+        float3 xformOp:translate = (-3.3121016, -19.54684, 1.6838597)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "small_buildingD_7" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.033812046, 3.2589412, 2.9786444)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        reorder nameChildren = ["Materials", "Geom"]
+        quatf xformOp:orient = (-0.012048481, 0.9949062, -0.08024421, 0.059811257)
+        float3 xformOp:scale = (1.1, 1.1000001, 1.1000003)
+        float3 xformOp:translate = (-2.0158114, -19.063295, 5.4520164)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_7/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_7/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_7/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_7/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_7/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_12" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.3534738, -0.8685969, -4.119533)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.099573344, 0.556456, 0.34745315, 0.74814314)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (3.0403748, -16.469683, 10.746925)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_12/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_12/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_12/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_12/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_12/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_12/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_13" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.226911, -0.48024163, -4.3349705)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.33301488, 0.47506118, 0.35328674, 0.733898)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (-2.947029, -11.418303, 15.965317)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_13/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_13/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_13/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_13/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_13/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_13/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_9" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.6190743, 3.2862449, 3.029924)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.7237318, 0.6840383, -0.09063052, 0.009476343)
+        float3 xformOp:scale = (1.1, 1.1000001, 1.1000003)
+        float3 xformOp:translate = (-1.6498234, -0.92558634, 19.731747)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_9/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_9/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_9/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_9/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_9/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "skyscraperE_14" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.7856754, 0.091489606, -4.5276837)
+        }
+        references = @skyscraperE.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.42769083, 0.475012, 0.616873, 0.45925137)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (0.78941554, 2.163347, 19.883978)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "trim"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_14/Materials/trim/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_14/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "border"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_14/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_14/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_14/Materials/roof/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/skyscraperE_14/Materials/door/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_10" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.040473, 2.8051445, 2.7229664)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.8036621, 0.5341711, 0.032403484, -0.2602662)
+        float3 xformOp:scale = (1.1, 1.1000001, 1.1000003)
+        float3 xformOp:translate = (6.3879795, 6.492894, 17.453535)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_10/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_10/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_10/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_10/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_10/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_11" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.101614, 3.4552703, 3.0551457)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.8597258, 0.48445666, -0.15663086, 0.040498704)
+        float3 xformOp:scale = (1.1, 1.1000001, 1.1000003)
+        float3 xformOp:translate = (-3.8317327, 11.431192, 15.787713)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_11/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_11/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_11/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_11/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_11/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_12" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.4899387, 3.3600001, 2.758522)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9311625, 0.29271102, -0.16193645, -0.14502819)
+        float3 xformOp:scale = (1.1, 1.1000001, 1.1000003)
+        float3 xformOp:translate = (4.3411703, 15.091849, 12.16721)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_12/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_12/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_12/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_12/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_12/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_13" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.9759212, 3.386888, 2.907653)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9835078, 0.06732958, -0.13067132, -0.105376124)
+        float3 xformOp:scale = (1.1, 1.1000001, 1.1000003)
+        float3 xformOp:translate = (3.6962142, 19.04926, 4.286862)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_13/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_13/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_13/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_13/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_13/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_11" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (2.2122102, -0.15311213, 0.0071446183)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.4465871, 0.89145833, -0.031090492, 0.06996702)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (2.4188335, -10.419168, 17.149132)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_11/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_11/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_12" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (2.7327795, -0.19198652, -0.31415918)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.21424544, 0.95963037, -0.17168838, 0.06108728)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-3.6700153, -18.587126, 5.6866474)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_12/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_12/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_13" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (2.4144454, -0.15208451, 0.025675366)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.3536482, 0.932201, -0.015050099, 0.07554917)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (3.9311097, -13.205759, 14.657858)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_13/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_13/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_14" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (2.3202286, -0.35731283, 0.28151405)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.36613667, 0.9032857, 0.05633451, 0.21643777)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (-3.231534, -15.293768, 12.379416)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_14/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_14/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_15" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (2.364362, 0.1827489, 0.006667734)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.3776061, 0.9214535, 0.0376465, -0.083185025)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (1.0619255, -15.080439, 13.073226)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_15/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_15/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_16" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.9133105, -0.19626813, 0.080833614)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.89073896, 0.44202185, -0.07013422, 0.079258405)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-1.9324883, 11.463439, 16.270786)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_16/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_16/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_17" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.79614294, 0.075734995, 0.300317)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.91297954, 0.37778398, 0.09245318, 0.123288855)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (-2.929, 13.715, 14.171)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_17/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_17/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_18" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.37816978, 1.638001e-7, -4.1529752e-8)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9821767, 0.18796018, 7.653735e-8, -3.5788723e-8)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-1.4511051, 17.690216, 9.198847)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_18/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_18/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_19" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.70351475, -0.24496678, 0.15387914)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9257436, 0.34977117, -0.08807212, 0.11358808)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-4.6992297, 14.769297, 12.5161705)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_19/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_19/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_20" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.69124705, -0.19198619, -0.31415907)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.93008214, 0.31896502, -0.14182098, -0.114434764)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (1.9444449, 13.658132, 14.297656)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_20/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_20/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_21" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.3380477, -0.22045681, -3.0282433)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.07397367, 0.09879269, 0.1730732, 0.9771456)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (2.389335, -18.72857, 6.375663)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_21/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_21/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_22" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (2.233734, -1.3350066, -2.24739)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.65054905, 0.060409006, -0.7538149, -0.069998085)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (-0.8042342, 19.376837, 4.2738347)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_22/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_22/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_23" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.8914348, -1.1769953, -0.79464513)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.78464967, 0.13683397, -0.6006142, -0.06974202)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-2.185454, 18.902466, 5.7514563)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_23/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_23/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_24" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.24097595, -0.005032169, -0.29240122)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.98220015, 0.118550114, -0.019981429, -0.14432453)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (4.7305727, 18.177446, 6.810487)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_24/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_24/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_25" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.9100232, 0.023127794, -0.09776175)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.11594176, 0.9919864, -0.04986532, -0.005828097)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-3.7071438, -19.48051, -4.702614)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_25/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_25/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_26" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.39701033, -0.12634328, -3.4380052)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.15678878, 0.032149523, -0.20379212, 0.96584284)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-2.6886423, -18.086075, -7.871649)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_26/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_26/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_27" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.5730505, -5.7867645e-8, -3.0826638e-7)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.21405968, 0.9768206, -1.4436691e-7, 6.1256856e-8)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (-1.3031292, -17.842667, -8.571561)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_27/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_27/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_28" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-0.9359242, -1.3350064, -2.247391)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.05127398, -0.6513326, 0.080569424, -0.75275856)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (-0.6030027, -19.632444, -3.051278)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_28/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_28/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_29" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (4.1249223, -1.1769952, -0.79464567)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.17272948, 0.7775367, -0.042081773, 0.60318357)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (3.9988372, -19.018509, -4.2006836)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_29/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_29/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_30" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.0858054, -0.24237831, 0.35932332)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.005645078, 0.9769104, 0.17399962, 0.12384788)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (1.5942988, -19.885132, 2.069715)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_30/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_30/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_31" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.1462126, -1.324571, 0.12179722)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.039242912, 0.7870386, 0.049412064, 0.6136682)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (2.1770437, -19.808441, 0.3021454)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_31/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_31/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_32" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.8731542, -0.31456438, -0.043488882)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.5878398, 0.79338545, -0.11008999, 0.1134201)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-4.997814, -6.3627462, 18.167986)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_32/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_32/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_33" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.7841337, -0.21305706, -1.3717765)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.535495, 0.5566546, -0.5418519, -0.33132675)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-1.7363532, 6.6563363, 18.753727)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_33/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_33/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_34" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.4161125, -0.26034096, -1.3311315)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.6445722, 0.4463359, -0.4757587, -0.39870375)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (3.8323166, 4.1278944, 19.15935)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_34/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_34/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_35" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.8269597, -0.20159164, -1.4490172)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.50800097, 0.5490393, -0.5680457, -0.34324184)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-4.367779, 2.72487, 19.284103)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_35/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_35/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_36" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.7010261, 0.039197646, -1.0759622)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.5587697, 0.6519486, -0.37395748, -0.35056433)
+        float3 xformOp:scale = (1.2, 1, 1)
+        float3 xformOp:translate = (0.94330084, -2.843792, 19.742891)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_36/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_36/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_37" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.1250333, -0.31034395, 2.235447)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.29172605, 0.3481899, 0.41651985, 0.7875093)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-2.8674645, -6.8314767, 18.81196)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_37/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_37/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_38" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.7094527, -0.16964802, 0.10462503)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.6565121, -0.7477428, -0.09484206, -0.029626183)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (1.0632718, 0.7467397, -20.17868)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_38/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_38/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_39" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.1268457, -0.19198625, -0.31415915)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.8231712, -0.53775513, 0.003130881, -0.18220514)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (5.3752236, 6.491412, -18.01293)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_39/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_39/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_40" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.2958755, -0.02953162, -0.05806087)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.7966487, -0.6035651, 0.005748918, -0.032048795)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (1.3428767, 3.9342976, -19.449389)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_40/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_40/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_41" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.2461865, 0.033733383, -0.04076975)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.43305454, 0.90097946, -0.025671594, -0.006377827)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-0.7177114, -12.285951, -16.306852)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_41/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_41/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_42" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.8170246, 0.07692037, -0.13947737)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.6150842, 0.7844436, -0.07849663, 0.012569122)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-1.5890665, -5.252896, -19.369017)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_42/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_42/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_43" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.3824219, -0.5949375, -0.5437506)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.6594046, -0.64773047, -0.053864993, -0.37779552)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (5.5711265, -3.709308, -18.741539)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_43/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_43/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_44" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-2.0351453, -0.19198619, -0.31415948)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.50381756, -0.8443692, 0.08274679, -0.16236235)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (2.7399158, -5.4846244, -19.002163)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_44/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_44/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_45" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.935398, -0.1423192, 0.13857968)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        quatf xformOp:orient = (-0.38920015, 0.91581833, 0.09110928, 0.03871934)
+        float3 xformOp:scale = (1.2, 1, 1.3)
+        float3 xformOp:translate = (1.4847167, -14.947688, -12.986114)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_45/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_45/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "tree_small_46" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.3924314, 0.0369655, 1.8836344)
+        }
+        references = @tree_small.usdz@
+    )
+    {
+        reorder nameChildren = ["Materials", "Geom"]
+        quatf xformOp:orient = (-0.44174117, 0.38870266, 0.51015735, -0.62730736)
+        float3 xformOp:scale = (1.4, 1, 1)
+        float3 xformOp:translate = (-3.6867964, 4.917683, -18.95067)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "woodBark"
+            {
+                token outputs:surface.connect = </Root/tree_small_46/Materials/woodBark/surfaceShader.outputs:surface>
+            }
+
+            over "leafsGreen"
+            {
+                token outputs:surface.connect = </Root/tree_small_46/Materials/leafsGreen/surfaceShader.outputs:surface>
+            }
+        }
+    }
+
+    def "small_buildingD_8" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-1.0773759, 2.7246695, 3.3143992)
+        }
+        references = @small_buildingD.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.5153615, 0.8275041, 0.17824508, -0.13367158)
+        float3 xformOp:scale = (1.1, 1.1000001, 1.1000003)
+        float3 xformOp:translate = (3.6850483, -8.839427, 17.644619)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "border"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_8/Materials/border/surfaceShader.outputs:surface>
+            }
+
+            over "_defaultMat"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_8/Materials/_defaultMat/surfaceShader.outputs:surface>
+            }
+
+            over "door"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_8/Materials/door/surfaceShader.outputs:surface>
+            }
+
+            over "window"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_8/Materials/window/surfaceShader.outputs:surface>
+            }
+
+            over "roof"
+            {
+                token outputs:surface.connect = </Root/small_buildingD_8/Materials/roof/surfaceShader.outputs:surface>
+            }
+        }
+
+        over "Geom"
+        {
+            over "small_buildingD"
+            {
+                over "primitive_0"
+                {
+                }
+
+                over "primitive_1"
+                {
+                }
+
+                over "primitive_2"
+                {
+                }
+
+                over "primitive_3"
+                {
+                }
+
+                over "primitive_4"
+                {
+                }
+            }
+        }
+    }
+
+    def "Cloud_1" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (4.7123885, 4.712389, 0)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.5, 0.5, -0.5, 0.5)
+        float3 xformOp:scale = (10, 10, 10)
+        float3 xformOp:translate = (2.4536657, 28.687363, 1.8626451e-8)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Cloud_2" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.141593, 3.9548922, -1.5707965)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.64944303, 0.27968523, -0.27968523, 0.6494429)
+        float3 xformOp:scale = (11, 11, 11)
+        float3 xformOp:translate = (-5.0581017, 20.749836, -18.5843)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_2/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_2/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_2/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_2/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def "Cloud_3" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.141593, 3.254066, -1.570796)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.70598894, 0.03974442, -0.039744303, 0.7059889)
+        float3 xformOp:scale = (8, 8, 8)
+        float3 xformOp:translate = (0.7844187, 2.7297225, -29.22552)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_3/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_3/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_3/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_3/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def "Cloud_4" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.141593, 2.8610172, -1.5707955)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.70015997, -0.098873235, 0.098873384, 0.7001602)
+        float3 xformOp:scale = (12, 12, 12)
+        float3 xformOp:translate = (-13.155267, -10.988131, -28.65722)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_4/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_4/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_4/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_4/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def "Cloud_5" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (3.141593, 2.2890046, -1.570796)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.6438239, -0.2923881, 0.29238814, 0.64382386)
+        float3 xformOp:scale = (8, 8, 8)
+        float3 xformOp:translate = (0.95129514, -24.553465, -15.577881)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_5/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_5/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_5/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_5/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def "Cloud_6" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (6.283185, 1.6693201, 1.570796)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.47477245, -0.5240145, 0.5240145, 0.47477245)
+        float3 xformOp:scale = (10, 10, 10)
+        float3 xformOp:translate = (0.1240603, -29.032421, 4.882522)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_6/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_6/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_6/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_6/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def "Cloud_7" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (6.283185, 2.3676648, 1.5707965)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (-0.26684693, 0.6548227, -0.65482265, -0.26684693)
+        float3 xformOp:scale = (12, 12, 12)
+        float3 xformOp:translate = (1.7489605, -19.413565, 22.610748)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_7/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_7/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_7/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_7/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def "Cloud_8" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (6.283185, 3.1348372, 1.5707965)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (-0.0023884512, 0.70710284, -0.7071026, -0.002388373)
+        float3 xformOp:scale = (8, 8, 8)
+        float3 xformOp:translate = (0.12405813, -1.4319711, 32.434334)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_8/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_8/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_8/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_8/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def "Cloud_9" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (6.283185, 3.8149877, 1.5707965)
+        }
+        references = @Cloud.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.23360813, 0.66740346, -0.66740334, 0.23360828)
+        float3 xformOp:scale = (9, 9, 9)
+        float3 xformOp:translate = (-4.981923, 22.03015, 25.027988)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "cloud_billboard"
+            {
+                token outputs:surface.connect = </Root/Cloud_9/_materials/cloud_billboard/Principled_BSDF.outputs:surface>
+
+                over "Principled_BSDF"
+                {
+                    color3f inputs:diffuseColor.connect = </Root/Cloud_9/_materials/cloud_billboard/Image_Texture.outputs:rgb>
+                    float inputs:opacity.connect = </Root/Cloud_9/_materials/cloud_billboard/Image_Texture.outputs:a>
+                }
+
+                over "Image_Texture"
+                {
+                    float2 inputs:st.connect = </Root/Cloud_9/_materials/cloud_billboard/uvmap.outputs:result>
+                }
+            }
+        }
+    }
+
+    def Material "PipeMaterial"
+    {
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        prepend token outputs:surface.connect = </Root/PipeMaterial/UsdPreviewSurface.outputs:surface>
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.3294195, 0.71711904, 0.41181388) (
+                colorSpace = "srgb_displayp3"
+            )
+            float inputs:ior = 1.5
+            float inputs:metallic = 1
+            float inputs:opacityThreshold
+            float inputs:roughness = 0.75
+            token outputs:surface
+        }
+    }
+
+    def "Pipe_0_bot" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 2.8824437e-7, 1.4210855e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        reorder nameChildren = ["Cylinder", "env_light"]
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (1, -1.0240497e-21, 1.4412218e-7, 7.1054274e-15)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (-0.000004529953, 0, 25)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_0_top" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-3.1415927, 0, 0)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        reorder nameChildren = ["Cylinder", "env_light"]
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (4.371139e-8, 1, 0, 0)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (-0.000004529953, 0, 28)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_1_bot" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-1.0471976, 2.8824437e-7, 1.4210855e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        reorder nameChildren = ["Cylinder", "env_light"]
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.8660254, -0.5, 1.2481347e-7, 7.20611e-8)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, 21.651, 12.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_1_top" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-4.1887903, 2.882444e-7, 0)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        reorder nameChildren = ["Cylinder", "env_light"]
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.50000006, 0.8660253, 7.2061106e-8, -1.2481347e-7)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, 24.249, 14)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_2_bot" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-2.0943952, 3.4784904e-7, -2.842171e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (-0.49999997, 0.8660254, -8.696227e-8, -1.5062305e-7)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, 21.651, -12.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_2_top" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-5.2359877, 3.47849e-7, -5.684342e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.8660254, 0.5, 1.5062302e-7, -8.6962274e-8)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, 24.249, -14)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_3_bot" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-3.1415927, 3.4784904e-7, -2.842171e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (4.371139e-8, 1, -6.6083723e-15, -1.7392452e-7)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (-0.00000333786, 0, -25)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_3_top" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 3.4784904e-7, -2.842171e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (1, 2.471616e-21, 1.7392452e-7, -1.4210855e-14)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (-0.00000333786, 0, -28)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_4_bot" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-4.1887903, 3.4784907e-7, -4.2632568e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.50000006, 0.8660253, 8.696225e-8, -1.5062305e-7)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, -21.651, -12.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_4_top" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-1.0471976, 3.4784907e-7, -4.2632564e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.8660254, -0.5, 1.5062308e-7, 8.696225e-8)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, -24.249, -14)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_5_bot" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-5.2359877, 2.8824434e-7, 2.842171e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        reorder nameChildren = ["Cylinder", "env_light"]
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.8660254, 0.5, 1.2481347e-7, -7.206108e-8)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, -21.651, 12.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Pipe_5_top" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-2.0943952, 2.8824434e-7, 2.842171e-14)
+        }
+        references = @Pipe.usdc@
+    )
+    {
+        reorder nameChildren = ["Cylinder", "env_light"]
+        rel material:binding = </Root/PipeMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (-0.49999997, 0.8660254, -7.206107e-8, -1.2481347e-7)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, -24.249, 14)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+
