@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameOverView: View {
     @Environment(GameModel.self) private var model
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     var body: some View {
         VStack() {
@@ -31,8 +32,13 @@ struct GameOverView: View {
             .padding(60)
             
             HStack {
-                Button("Try Again") {
+                Button("        " + "Try Again" + "        ") {
                     respawn(model: model)
+                }
+                Button("        " + "Quit" + "        ") {
+                    Task {
+                        await dismissImmersiveSpace()
+                    }
                 }
             }
         }
