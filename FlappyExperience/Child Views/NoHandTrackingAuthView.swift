@@ -17,7 +17,7 @@ struct NoHandTrackingAuthView: View {
                 .font(.system(size: 50, weight: .bold))
             
             Text("Hand tracking authorization denied.").padding(.top, 40)
-            Text("Try authorizing again or fix in Settings.").padding(.bottom, 70)
+            Text("Fix in Settings > Privacy & Security > Hand Structure & Movements.").padding(.bottom, 70)
             
             HStack {
                 Button("Try Again") {
