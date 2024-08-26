@@ -26,8 +26,8 @@ class GameModel {
         Difficulty.hard: Float(-9.81),
     ]
     let pipeGap = [                             // Gap between the top and bottom halves of a pipe.
-        Difficulty.veryEasy: Float(5.5),
-        Difficulty.easy: Float(4),
+        Difficulty.veryEasy: Float(6),
+        Difficulty.easy: Float(4.5),
         Difficulty.medium: Float(3),
         Difficulty.hard: Float(2.5),
     ]
