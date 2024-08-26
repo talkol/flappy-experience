@@ -26,16 +26,16 @@ class GameModel {
         Difficulty.hard: Float(-9.81),
     ]
     let pipeGap = [                             // Gap between the top and bottom halves of a pipe.
-        Difficulty.veryEasy: Float(5),
+        Difficulty.veryEasy: Float(5.5),
         Difficulty.easy: Float(4),
         Difficulty.medium: Float(3),
-        Difficulty.hard: Float(2),
+        Difficulty.hard: Float(2.5),
     ]
     let flapVerticalVelocity = [                // How powerful a flap is.
         Difficulty.veryEasy: Float(4),
         Difficulty.easy: Float(6),
         Difficulty.medium: Float(8),
-        Difficulty.hard: Float(10),
+        Difficulty.hard: Float(9),
     ]
     
     // Tweak these to modify gameplay.
