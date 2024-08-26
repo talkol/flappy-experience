@@ -10,7 +10,10 @@ import RealityKit
 
 // Respawn the player in the beginning of the course, before starting a new round.
 @MainActor
-func respawn(model: GameModel) {
+func respawn(model: GameModel, positionModel: HeadsetPositionModel?) {
+    if let positionModel = positionModel {
+        checkHeadsetPosition(model: model, positionModel: positionModel)
+    }
     model.gameOver = false
     model.nextPipeIndex = model.firstPipeIndex
     model.passedNextPipeFirstEdge = false

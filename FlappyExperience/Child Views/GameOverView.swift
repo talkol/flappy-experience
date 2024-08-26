@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameOverView: View {
     @Environment(GameModel.self) private var model
+    @Environment(HeadsetPositionModel.self) private var positionModel
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     var body: some View {
@@ -33,7 +34,7 @@ struct GameOverView: View {
             
             HStack {
                 Button("        " + "Try Again" + "        ") {
-                    respawn(model: model)
+                    respawn(model: model, positionModel: positionModel)
                 }
                 Button("        " + "Quit" + "        ") {
                     Task {

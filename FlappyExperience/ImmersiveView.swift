@@ -76,7 +76,7 @@ struct ImmersiveView: View {
                 }
                 
                 // Reset the player's position so we can start the game.
-                respawn(model: model)
+                respawn(model: model, positionModel: nil)
             }
         }
         .onAppear {
@@ -87,7 +87,7 @@ struct ImmersiveView: View {
         }
         .task {
             await positionModel.start()
-            try! await Task.sleep(for: .seconds(1)) // Let the session actually start.
+            try! await Task.sleep(for: .seconds(0.5)) // Let the session actually start.
             checkHeadsetPosition(model: model, positionModel: positionModel)
         }
         .task {

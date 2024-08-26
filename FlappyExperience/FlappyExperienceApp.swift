@@ -17,6 +17,7 @@ struct FlappyExperienceApp: App {
         WindowGroup(id: "main") {
             ContentView()
                 .environment(model)
+                .environment(positionModel)
                 .environment(gestureModel)
                 .frame(width: 800, height: 650)
         }
