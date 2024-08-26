@@ -56,6 +56,7 @@ class GameModel {
     let firstPipeIndex = 2                      // When respawning, the first pipe we see is entity "Pipe_2_top" + "Pipe_2_bot".
     let pipeRandomHeightMin: Float = 1          // The minimum height a pipe can be when its height is randomized.
     let pipeRandomHeightRange: Float = 12       // The range of heights a pipe can be when its height is randomized.
+    let pipeRandomFirstPipe: Float = 0.33       // The random value for the first pipe isn't so random.
     
     // Classes used to play music and sound effects.
     let musicPlayer: MusicPlayer = .init()      // Plays background music.

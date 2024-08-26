@@ -163,8 +163,8 @@ func updateWorldTransform(model: GameModel) {
 func randomizePipeHeight(model: GameModel, pipeIndex: Int, onInit: Bool = false) {
     var randomFraction = Float.random(in: 0..<1)
     if onInit && pipeIndex == model.firstPipeIndex {
-        // First pipe has half the distance so half the random height as well.
-        randomFraction /= 2
+        // First pipe has half the distance so no real random.
+        randomFraction = model.pipeRandomFirstPipe
     }
     let pipeBotHeight = model.worldRadius + model.pipeRandomHeightMin + model.pipeRandomHeightRange * randomFraction
     let pipeTopHeight = pipeBotHeight + model.getPipeGap()
