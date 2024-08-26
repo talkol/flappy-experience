@@ -52,12 +52,12 @@ func flap(model: GameModel, dismissWindow: DismissWindowAction) {
 // We do efficient collision detection in only two points for each pipe, the two pipe edges (front and back).
 @MainActor
 func arrivedAtPipeEdge(model: GameModel, openWindow: OpenWindowAction) {
-    // Check collision with the bottom pipe.
-    if model.playerHeight + model.playerHeadAboveFloor < model.pipeBotHeights[model.nextPipeIndex % model.numPipes] {
+    // Check collision with the bottom pipe (the 0.2 came from trial and error on a real device).
+    if model.playerHeight + model.playerHeadAboveFloor + 0.2 < model.pipeBotHeights[model.nextPipeIndex % model.numPipes] {
         die(model: model, openWindow: openWindow)
     }
-    // Check collision with the top pipe.
-    if model.playerHeight + model.playerHeadAboveFloor > model.pipeBotHeights[model.nextPipeIndex % model.numPipes] + model.getPipeGap() {
+    // Check collision with the top pipe (the 0.2 came from trial and error on a real device).
+    if model.playerHeight + model.playerHeadAboveFloor + 0.2 > model.pipeBotHeights[model.nextPipeIndex % model.numPipes] + model.getPipeGap() {
         die(model: model, openWindow: openWindow)
     }
     
