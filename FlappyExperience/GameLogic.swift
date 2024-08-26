@@ -42,8 +42,6 @@ func flap(model: GameModel, dismissWindow: DismissWindowAction) {
         if !model.gameOver {
             // Start the game if not started yet.
             start(model: model, dismissWindow: dismissWindow)
-        } else {
-            respawn(model: model)
         }
     }
 }
