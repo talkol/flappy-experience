@@ -40,7 +40,7 @@ class GameModel {
     
     // Tweak these to modify gameplay.
     let forwardAngularVelocity: Float = 0.2     // How fast is the player moving over the planet.
-    let heightGroundDeath: Float = 0.5          // The height above ground which below the player dies by hitting the ground.
+    let heightGroundDeath: Float = 0.6          // The height above ground which below the player dies by hitting the ground.
     let playerInitialHeight: Float = 3          // The initial height the player starts at when a new round starts.
     let numPipeScoredBeforeSurprise = 15        // If the player gets a multiple of this score they get a surprise.
     
@@ -54,7 +54,7 @@ class GameModel {
     let pipeRadius: Float = 1.5/2               // The radius of the pipe opening.
     let numPipes = 6                            // The number of pipes in the world, spread evenly from angle zero.
     let firstPipeIndex = 2                      // When respawning, the first pipe we see is entity "Pipe_2_top" + "Pipe_2_bot".
-    let pipeRandomHeightMin: Float = 1          // The minimum height a pipe can be when its height is randomized.
+    let pipeRandomHeightMin: Float = 1.3        // The minimum height a pipe can be when its height is randomized.
     let pipeRandomHeightRange: Float = 12       // The range of heights a pipe can be when its height is randomized.
     let pipeRandomFirstPipe: Float = 0.33       // The random value for the first pipe isn't so random.
     
