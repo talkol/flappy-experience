@@ -24,6 +24,9 @@ struct ImmersiveView: View {
                 content.add(immersiveContentEntity)
                 // Update relevant entities in the game model.
                 model.sceneContent = immersiveContentEntity
+                model.pipeBotEntities.removeAll()   // Reset model in case has leftovers.
+                model.pipeTopEntities.removeAll()   // Reset model in case has leftovers.
+                model.pipeBotHeights.removeAll()    // Reset model in case has leftovers.
                 for pipeIndex in 0...(model.numPipes - 1) {
                     let pipeBot = immersiveContentEntity.findEntity(named: "Pipe_\(pipeIndex)_bot")
                     let pipeTop = immersiveContentEntity.findEntity(named: "Pipe_\(pipeIndex)_top")
