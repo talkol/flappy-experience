@@ -34,7 +34,6 @@ struct ImmersiveView: View {
                         model.pipeBotEntities.append(pipeBot!)
                         model.pipeTopEntities.append(pipeTop!)
                         model.pipeBotHeights.append(0)
-                        randomizePipeHeight(model: model, pipeIndex: pipeIndex, onInit: true)
                     }
                 }
                 

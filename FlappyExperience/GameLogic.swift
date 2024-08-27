@@ -17,17 +17,14 @@ func respawn(model: GameModel, positionModel: HeadsetPositionModel?) {
     model.gameOver = false
     model.nextPipeIndex = model.firstPipeIndex
     model.passedNextPipeFirstEdge = false
+    for pipeIndex in 0...(model.numPipes - 1) {
+        randomizePipeHeight(model: model, pipeIndex: pipeIndex, onRespawn: true)
+    }
 }
 
 // Start a new round and let player control the character.
 @MainActor
 func start(model: GameModel, dismissWindow: DismissWindowAction) {
-    for pipeIndex in 0...(model.numPipes - 1) {
-        // Don't move the pipe in front of the player, it looks bad.
-        if pipeIndex != model.firstPipeIndex {
-            randomizePipeHeight(model: model, pipeIndex: pipeIndex)
-        }
-    }
     if model.score > model.getBest() {
         model.setBest(best: model.score)
     }
@@ -148,7 +145,7 @@ func gameloop(model: GameModel, deltaTime: Float, openWindow: OpenWindowAction) 
 @MainActor
 func difficultyChanged(model: GameModel) {
     for pipeIndex in 0...(model.numPipes - 1) {
-        randomizePipeHeight(model: model, pipeIndex: pipeIndex, onInit: true)
+        randomizePipeHeight(model: model, pipeIndex: pipeIndex, onRespawn: true)
     }
 }
 
@@ -161,9 +158,9 @@ func updateWorldTransform(model: GameModel) {
 
 // To keep the level interesting, randomize pipe heights when player can't see them.
 @MainActor
-func randomizePipeHeight(model: GameModel, pipeIndex: Int, onInit: Bool = false) {
+func randomizePipeHeight(model: GameModel, pipeIndex: Int, onRespawn: Bool = false) {
     var randomFraction = Float.random(in: 0..<1)
-    if onInit && pipeIndex == model.firstPipeIndex {
+    if onRespawn && pipeIndex == model.firstPipeIndex {
         // First pipe has half the distance so no real random.
         randomFraction = model.pipeRandomFirstPipe
     }
