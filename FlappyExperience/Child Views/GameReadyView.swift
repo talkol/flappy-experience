@@ -61,7 +61,9 @@ struct GameReadyView: View {
                 }
             }
         }.onChange(of: model.difficulty) {
-            difficultyChanged(model: model)
+            DispatchQueue.main.async {
+                difficultyChanged(model: model)
+            }
         }
     }
 }
