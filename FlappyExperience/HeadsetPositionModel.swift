@@ -10,11 +10,13 @@ import QuartzCore
 
 @Observable
 class HeadsetPositionModel {
-    let session = ARKitSession()
-    let worldTracking = WorldTrackingProvider()
+    @ObservationIgnored var session = ARKitSession()
+    @ObservationIgnored var worldTracking = WorldTrackingProvider()
     
     @MainActor
     func start() async {
+        session = ARKitSession()
+        worldTracking = WorldTrackingProvider()
         do {
             if WorldTrackingProvider.isSupported {
                 print("ARKitSession for world tracking starting.")
