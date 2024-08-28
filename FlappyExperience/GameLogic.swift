@@ -142,6 +142,7 @@ func gameloop(model: GameModel, deltaTime: Float, openWindow: OpenWindowAction) 
     }
 }
 
+// Runs after the player changes the difficulty level in the menu.
 @MainActor
 func difficultyChanged(model: GameModel) {
     for pipeIndex in 0...(model.numPipes - 1) {
