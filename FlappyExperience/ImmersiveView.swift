@@ -37,6 +37,15 @@ struct ImmersiveView: View {
                     }
                 }
                 
+                // In augmented mode, make the clouds less visible.
+                if !model.immersiveModeFull {
+                    var cloudIndex = 1
+                    while let cloud = immersiveContentEntity.findEntity(named: "Cloud_\(cloudIndex)") {
+                        cloud.components[OpacityComponent.self] = .init(opacity: 0.25)
+                        cloudIndex += 1
+                    }
+                }
+                
 #if targetEnvironment(simulator)
                 // Allow control through the keyboard in the simulator only (since no hand gestures).
                 Task.detached {
@@ -61,16 +70,18 @@ struct ImmersiveView: View {
                 immersiveContentEntity.components.set(iblComponent)
                 immersiveContentEntity.components.set(ImageBasedLightReceiverComponent(imageBasedLight: immersiveContentEntity))
                 
-                // Add a skybox for the immersive content scene.
-                var skyboxMaterial = UnlitMaterial()
-                skyboxMaterial.color = .init(tint:UIColor(red: 0.439, green: 0.769, blue: 0.808, alpha: 1))
-                let skybox = Entity()
-                skybox.components.set(ModelComponent(
-                    mesh: .generateSphere(radius: 0.1),
-                    materials: [skyboxMaterial]
-                ))
-                skybox.scale *= .init(x: -10000, y: 10000, z: 10000)
-                immersiveContentEntity.addChild(skybox)
+                // Add a skybox for the immersive content scene, but only in full immersion.
+                if model.immersiveModeFull {
+                    var skyboxMaterial = UnlitMaterial()
+                    skyboxMaterial.color = .init(tint:UIColor(red: 0.439, green: 0.769, blue: 0.808, alpha: 1))
+                    let skybox = Entity()
+                    skybox.components.set(ModelComponent(
+                        mesh: .generateSphere(radius: 0.1),
+                        materials: [skyboxMaterial]
+                    ))
+                    skybox.scale *= .init(x: -10000, y: 10000, z: 10000)
+                    immersiveContentEntity.addChild(skybox)
+                }
                 
                 // Run the gameloop on every frame.
                 let _ = content.subscribe(to: SceneEvents.Update.self) { event in

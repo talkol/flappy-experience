@@ -108,6 +108,9 @@ class GameModel {
         }
     }
     
+    // Is the player playing full immersion (true) or mixed augmented immersion (false).
+    var immersiveModeFull = true
+    
     // While in immersive mode, is the game actualy playing or is a menu dialog is shown.
     var gamePlaying = false
     

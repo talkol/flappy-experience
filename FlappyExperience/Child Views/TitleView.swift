@@ -15,23 +15,33 @@ struct TitleView: View {
     @Environment(\.openURL) var openURL
     
     var body: some View {
+        @Bindable var model = model
         NavigationStack {
             VStack() {
                 Text("Flappy Experience")
                     .font(.system(size: 50, weight: .bold))
                 
-                Button("        " + "Play" + "        ") {
+                Button("                " + "Play" + "                ") {
                     Task {
                         if !(await gestureModel.requestAuth(model: model)) {
                             return
                         }
-                        await openImmersiveSpace(id: "ImmersiveSpace")
+                        if model.immersiveModeFull {
+                            await openImmersiveSpace(id: "ImmersiveSpace")
+                        } else {
+                            await openImmersiveSpace(id: "MixedSpace")
+                        }
                     }
                 }
                 .font(.title)
                 .tint(Color.blue)
-                .padding(120)
+                .padding(.top, 100)
+                .padding(.bottom, 20)
                 
+                Toggle("Full Immersion", isOn: $model.immersiveModeFull)
+                    .frame(maxWidth: 200)
+                    .padding(.bottom, 80)
+                                
                 Text("This experience is free and open source on Github.")
                 Text("You can improve it or publish your own version.").padding(.bottom)
                 

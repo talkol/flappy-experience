@@ -30,5 +30,13 @@ struct FlappyExperienceApp: App {
                 .environment(gestureModel)
         }
         .immersionStyle(selection: .constant(.full), in: .full)
+        
+        ImmersiveSpace(id: "MixedSpace") {
+            ImmersiveView()
+                .environment(model)
+                .environment(positionModel)
+                .environment(gestureModel)
+        }
+        .immersionStyle(selection: .constant(.mixed), in: .mixed)
     }
 }
