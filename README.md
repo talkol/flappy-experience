@@ -4,6 +4,11 @@ Immersive game for Apple Vision Pro inspired by Flappy Bird and implemented with
 
 <img src="https://i.imgur.com/3GznbHG.png" width=400 />
 
+## Download from App Store
+
+This experience is available for free on Apple App Store:
+https://apps.apple.com/app/flappy-experience/id6667117044
+
 ## Open Source
 
 This game is free and open source and was developed with no motivation of profit. See [Credits.md](FlappyExperience/Credits.md) to see where every resource used to make this game came from. All resources are open as well.
