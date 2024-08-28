@@ -20,8 +20,8 @@ enum Direction: String, CaseIterable, Identifiable {
 
 @Observable
 class HandGestureModel {
-    @ObservationIgnored var session = ARKitSession()
-    @ObservationIgnored var handTracking = HandTrackingProvider()
+    let session = ARKitSession()
+    let handTracking = HandTrackingProvider()
     
     let minDiffForDirection: Float = 0.005 // Small movements below this threshold will not trigger an update.
     @ObservationIgnored var lastWristHeights = [HandAnchor.Chirality.left: Float(0), HandAnchor.Chirality.right: Float(0)]
@@ -49,8 +49,6 @@ class HandGestureModel {
     
     @MainActor
     func start() async {
-        session = ARKitSession()
-        handTracking = HandTrackingProvider()
         do {
             if HandTrackingProvider.isSupported {
                 print("ARKitSession for hand tracking starting.")
